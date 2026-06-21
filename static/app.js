@@ -266,6 +266,7 @@ function handleWebSocketMessage(event) {
 function lockInput() {
     isInputLocked = true;
     inputLockOverlay.classList.remove('hidden');
+    canvas.classList.add('captured');
     // Request focus so keyboard events target the document correctly
     canvas.focus();
 }
@@ -273,6 +274,7 @@ function lockInput() {
 function unlockInput() {
     isInputLocked = false;
     inputLockOverlay.classList.add('hidden');
+    canvas.classList.remove('captured');
 }
 
 // Input Capturing - Mouse events

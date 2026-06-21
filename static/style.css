@@ -244,63 +244,71 @@ body, html {
     max-height: 100%;
     object-fit: contain;
     cursor: crosshair;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#screen-canvas.captured {
+    border-color: var(--success);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
 }
 
 /* Lock Overlay */
 .lock-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(9, 10, 15, 0.7);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none; /* Crucial: clicks must pass through to the canvas */
 }
 
 .lock-overlay.hidden {
     opacity: 0;
+    transform: translate(-50%, -20px);
     pointer-events: none;
 }
 
 .overlay-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 360px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(16, 185, 129, 0.1);
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .overlay-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
 }
 
-.overlay-card h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+.overlay-text {
+    font-weight: 600;
+    color: var(--success);
 }
 
-.overlay-card p {
-    font-size: 0.9rem;
+.overlay-hint {
     color: var(--text-muted);
-    line-height: 1.5;
+    font-size: 0.85rem;
 }
 
 kbd {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     padding: 0.1rem 0.4rem;
     font-family: var(--font-mono);
     font-size: 0.8rem;
+    color: white;
 }
 
 /* HUD Panel */
